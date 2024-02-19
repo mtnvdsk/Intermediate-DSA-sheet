@@ -39,3 +39,65 @@ class FindSmallestInteger
 
 	}
 }
+
+
+//solution2
+import java.util.ArrayList;
+
+public class GFG {
+	public static int smallestPositiveInteger(ArrayList<Integer> arr) {
+		int n = arr.size();
+		int s = 0;
+		for (int i = 0; i < n; i++) {
+			s += arr.get(i); // compute sum of all elements
+		}
+		boolean[] dp = new boolean[s + 1]; // initialize dp array with false values
+		dp[0] = true; // a subset with sum 0 can always be formed
+		for (int i = 0; i < n; i++) {
+			for (int j = s; j >= arr.get(i); j--) {
+				if (dp[j - arr.get(i)]) { // if it's possible to form a subset with sum j-arr[i]
+					dp[j] = true; // then it's also possible to form a subset with sum j
+				}
+			}
+		}
+		for (int i = 1; i <= s; i++) {
+			if (!dp[i]) { // find the smallest positive integer that cannot be formed
+				return i;
+			}
+		}
+		return s + 1; // if all integers can be formed, then the answer is s+1
+	}
+
+	// Driver code
+	public static void main(String[] args) {
+		ArrayList<Integer> arr = new ArrayList<>();
+		arr.add(1);
+		arr.add(3);
+		arr.add(4);
+		arr.add(5);
+		System.out.println(smallestPositiveInteger(arr));
+
+		arr.clear();
+		arr.add(1);
+		arr.add(2);
+		arr.add(6);
+		arr.add(10);
+		arr.add(11);
+		arr.add(15);
+		System.out.println(smallestPositiveInteger(arr));
+
+		arr.clear();
+		arr.add(1);
+		arr.add(1);
+		arr.add(1);
+		arr.add(1);
+		System.out.println(smallestPositiveInteger(arr));
+
+		arr.clear();
+		arr.add(1);
+		arr.add(1);
+		arr.add(3);
+		arr.add(4);
+		System.out.println(smallestPositiveInteger(arr));
+	}
+}
