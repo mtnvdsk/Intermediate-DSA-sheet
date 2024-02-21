@@ -1,5 +1,3 @@
-// Java Program to get intersection point of two linked
-// lists.
 import java.util.*;
 import java.io.*;
 
@@ -81,5 +79,3 @@ class GFG {
 		}
 	}
 }
-
-// This code is contributed by lokesh (lokeshmvs21).
