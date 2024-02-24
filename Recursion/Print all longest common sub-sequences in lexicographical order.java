@@ -13,8 +13,6 @@ class Solution {
                     dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
             }
         }
-
-        // Backtrack to find all longest common subsequences
         SortedSet<String> result = new TreeSet<>();
         backtrack(dp, s, t, m, n, "", result);
 
